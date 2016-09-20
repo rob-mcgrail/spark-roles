@@ -27,8 +27,6 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        (new Filesystem)->cleanDirectory(database_path('migrations'));
-
         foreach ($this->getMigrations() as $key => $migration) {
 
             $timestamp = date('Y_m_d_His', time() + $key);
