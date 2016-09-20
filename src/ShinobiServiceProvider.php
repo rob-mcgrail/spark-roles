@@ -3,7 +3,7 @@ namespace ZiNETHQ\Shinobi;
 
 use Blade;
 use Illuminate\Support\ServiceProvider;
-use ZiNETHQ\Shinobi\Console\Commands\InstallCommand;
+use ZiNETHQ\Shinobi\Console\InstallCommand;
 
 class ShinobiServiceProvider extends ServiceProvider
 {

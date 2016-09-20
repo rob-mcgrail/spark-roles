@@ -1,6 +1,6 @@
 <?php
 
-namespace ZiNETHQ\Shinobi\Console\Commands;
+namespace ZiNETHQ\Shinobi\Console;
 
 use Illuminate\Console\Command;
 
