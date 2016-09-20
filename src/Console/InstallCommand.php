@@ -1,6 +1,6 @@
 <?php
 
-namespace ZiNETHQ\Console\Commands;
+namespace ZiNETHQ\Shinobi\Console\Commands;
 
 use Illuminate\Console\Command;
 
@@ -29,11 +29,9 @@ class InstallCommand extends Command
     {
         (new Filesystem)->cleanDirectory(database_path('migrations'));
 
-        $date = Carbon::now();
-
         foreach ($this->getMigrations() as $key => $migration) {
 
-            $timestamp = $date->addSeconds($key)->format('Y_m_d_His');
+            $timestamp = date('Y_m_d_His', time() + $key);
 
             copy(
                 'migrations/'.$migration.'.php',
