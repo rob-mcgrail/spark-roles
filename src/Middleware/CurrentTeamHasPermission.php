@@ -1,11 +1,11 @@
 <?php
-namespace Caffeinated\Shinobi\Middleware;
+namespace ZiNETHQ\Shinobi\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Caffeinated\Shinobi\Models\Role;
 
-class UserHasPermission
+class CurrentTeamHasPermission
 {
     /**
      * @var Illuminate\Contracts\Auth\Guard
@@ -13,7 +13,7 @@ class UserHasPermission
     protected $auth;
 
     /**
-     * Create a new UserHasPermission instance.
+     * Create a new CurrentTeamHasPermission instance.
      *
      * @param Guard $auth
      */
@@ -34,7 +34,7 @@ class UserHasPermission
     public function handle($request, Closure $next, $permissions)
     {
         if ($this->auth->check()) {
-            if (! $this->auth->user()->can($permissions)) {
+            if (! $this->auth->user()->currentTeam->can($permissions)) {
                 if ($request->ajax()) {
                     return response('Unauthorized.', 403);
                 }

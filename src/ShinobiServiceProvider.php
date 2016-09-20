@@ -1,5 +1,5 @@
 <?php
-namespace Caffeinated\Shinobi;
+namespace ZiNETHQ\Shinobi;
 
 use Blade;
 use Illuminate\Support\ServiceProvider;
@@ -37,7 +37,7 @@ class ShinobiServiceProvider extends ServiceProvider
 		$this->app->singleton('shinobi', function ($app) {
 			$auth = $app->make('Illuminate\Contracts\Auth\Guard');
 
-			return new \Caffeinated\Shinobi\Shinobi($auth);
+			return new \ZiNETHQ\Shinobi\Shinobi($auth);
 		});
 	}
 

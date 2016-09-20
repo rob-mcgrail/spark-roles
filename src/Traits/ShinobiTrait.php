@@ -1,5 +1,5 @@
 <?php
-namespace Caffeinated\Shinobi\Traits;
+namespace ZiNETHQ\Shinobi\Traits;
 
 trait ShinobiTrait
 {
@@ -11,17 +11,17 @@ trait ShinobiTrait
 	*/
 
 	/**
-	 * Users can have many roles.
+	 * Teams can have many roles.
 	 *
 	 * @return Illuminate\Database\Eloquent\Model
 	 */
 	public function roles()
 	{
-		return $this->belongsToMany('\Caffeinated\Shinobi\Models\Role')->withTimestamps();
+		return $this->belongsToMany('\ZiNETHQ\Shinobi\Models\Role')->withTimestamps();
 	}
 
 	/**
-	 * Get all user roles.
+	 * Get all team's' roles.
 	 *
 	 * @return array|null
 	 */
@@ -35,7 +35,7 @@ trait ShinobiTrait
 	}
 
 	/**
-	 * Checks if the user has the given role.
+	 * Checks if the team has the given role.
 	 *
 	 * @param  string $slug
 	 * @return bool
@@ -52,7 +52,7 @@ trait ShinobiTrait
 	}
 
 	/**
-	 * Assigns the given role to the user.
+	 * Assigns the given role to the team.
 	 *
 	 * @param  int $roleId
 	 * @return bool
@@ -69,7 +69,7 @@ trait ShinobiTrait
 	}
 
 	/**
-	 * Revokes the given role from the user.
+	 * Revokes the given role from the team.
 	 *
 	 * @param  int $roleId
 	 * @return bool
@@ -80,7 +80,7 @@ trait ShinobiTrait
 	}
 
 	/**
-	 * Syncs the given role(s) with the user.
+	 * Syncs the given role(s) with the team.
 	 *
 	 * @param  array $roleIds
 	 * @return bool
@@ -91,7 +91,7 @@ trait ShinobiTrait
 	}
 
 	/**
-	 * Revokes all roles from the user.
+	 * Revokes all roles from the team.
 	 *
 	 * @return bool
 	 */
@@ -108,7 +108,7 @@ trait ShinobiTrait
 	*/
 
 	/**
-	 * Get all user role permissions.
+	 * Get all team role permissions.
 	 *
 	 * @return array|null
 	 */
@@ -124,7 +124,7 @@ trait ShinobiTrait
 	}
 
 	/**
-	 * Check if user has the given permission.
+	 * Check if team has the given permission.
 	 *
 	 * @param  string $permission
 	 * @param array $arguments
@@ -152,7 +152,7 @@ trait ShinobiTrait
 	}
 
 	/**
-	 * Check if user has at least one of the given permissions
+	 * Check if team has at least one of the given permissions
 	 *
 	 * @param  array $permissions
 	 * @return bool

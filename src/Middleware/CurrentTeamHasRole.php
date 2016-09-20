@@ -1,10 +1,10 @@
 <?php
-namespace Caffeinated\Shinobi\Middleware;
+namespace ZiNETHQ\Shinobi\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class UserHasRole
+class CurrentTeamHasRole
 {
     /**
      * @var Illuminate\Contracts\Auth\Guard
@@ -32,7 +32,7 @@ class UserHasRole
      */
     public function handle($request, Closure $next, $role)
     {
-        if (! $this->auth->user()->is($role)) {
+        if (! $this->auth->user()->currentTeam->is($role)) {
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             }

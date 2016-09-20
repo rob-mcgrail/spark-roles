@@ -1,5 +1,5 @@
 <?php
-namespace Caffeinated\Shinobi\Facades;
+namespace ZiNETHQ\Shinobi\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

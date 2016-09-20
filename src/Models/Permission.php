@@ -1,5 +1,5 @@
 <?php
-namespace Caffeinated\Shinobi\Models;
+namespace ZiNETHQ\Shinobi\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,7 +26,7 @@ class Permission extends Model
 	 */
 	public function roles()
 	{
-		return $this->belongsToMany('\Caffeinated\Shinobi\Models\Role')->withTimestamps();
+		return $this->belongsToMany('\ZiNETHQ\Shinobi\Models\Role')->withTimestamps();
 	}
 
 	/**

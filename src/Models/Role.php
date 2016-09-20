@@ -1,5 +1,5 @@
 <?php
-namespace Caffeinated\Shinobi\Models;
+namespace ZiNETHQ\Shinobi\Models;
 
 use Config;
 use Illuminate\Database\Eloquent\Model;
@@ -21,13 +21,13 @@ class Role extends Model
 	protected $table = 'roles';
 
 	/**
-	 * Roles can belong to many users.
+	 * Roles can belong to many teams.
 	 *
 	 * @return Model
 	 */
-	public function users()
+	public function teams()
 	{
-		return $this->belongsToMany(config('auth.model') ?: config('auth.providers.users.model'))->withTimestamps();
+		return $this->belongsToMany("App\Team")->withTimestamps();
 	}
 
 	/**
@@ -37,7 +37,7 @@ class Role extends Model
 	 */
 	public function permissions()
 	{
-		return $this->belongsToMany('\Caffeinated\Shinobi\Models\Permission')->withTimestamps();
+		return $this->belongsToMany('\ZiNETHQ\Shinobi\Models\Permission')->withTimestamps();
 	}
 
 	/**

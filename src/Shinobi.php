@@ -1,7 +1,7 @@
 <?php
-namespace Caffeinated\Shinobi;
+namespace ZiNETHQ\Shinobi;
 
-use Caffeinated\Shinobi\Models\Role;
+use ZiNETHQ\Shinobi\Models\Role;
 use Illuminate\Contracts\Auth\Guard;
 
 class Shinobi
@@ -12,7 +12,7 @@ class Shinobi
     protected $auth;
 
     /**
-     * Create a new UserHasPermission instance.
+     * Create a new TeamHasPermission instance.
      *
      * @param Guard $auth
      */
@@ -22,7 +22,7 @@ class Shinobi
     }
 
     /**
-     * Checks if user has the given permissions.
+     * Checks if Team has the given permissions.
      *
      * @param array|string $permissions
      *
@@ -31,7 +31,7 @@ class Shinobi
     public function can($permissions)
     {
         if ($this->auth->check()) {
-            return $this->auth->user()->can($permissions);
+            return $this->auth->user()->currentTeam->can($permissions);
         } else {
             $guest = Role::whereSlug('guest')->first();
 
@@ -53,7 +53,7 @@ class Shinobi
     public function canAtLeast($permissions)
     {
         if ($this->auth->check()) {
-            return $this->auth->user()->canAtLeast($permissions);
+            return $this->auth->user()->currentTeam->canAtLeast($permissions);
         } else {
             $guest = Role::whereSlug('guest')->first();
 
@@ -74,7 +74,7 @@ class Shinobi
     public function is($role)
     {
         if ($this->auth->check()) {
-            return $this->auth->user()->is($role);
+            return $this->auth->user()->currentTeam->is($role);
         } else {
             if ($role === 'guest') {
                 return true;
