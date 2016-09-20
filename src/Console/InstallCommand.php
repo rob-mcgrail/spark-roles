@@ -27,14 +27,16 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        foreach ($this->getMigrations() as $key => $migration) {
+        if ($this->confirm('Installing Shinobi migrations, do you wish to continue? [y|N]')) {
+            foreach ($this->getMigrations() as $key => $migration) {
 
-            $timestamp = date('Y_m_d_His', time() + $key);
+                $timestamp = date('Y_m_d_His', time() + $key);
 
-            copy(
-                'migrations/'.$migration.'.php',
-                database_path('migrations/'.$timestamp.'_'.$migration.'.php')
-            );
+                copy(
+                    realpath(__DIR__."/../../migrations/{$migration}.php"),
+                    database_path("migrations/{$timestamp}_{$migration}.php")
+                );
+            }
         }
 
         $this->comment('ZiNETHQ Shinobi installed. Inspirational phrase!');
