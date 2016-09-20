@@ -3,6 +3,7 @@ namespace ZiNETHQ\Shinobi;
 
 use Blade;
 use Illuminate\Support\ServiceProvider;
+use ZiNETHQ\Shinobi\Console\Commands\InstallCommand;
 
 class ShinobiServiceProvider extends ServiceProvider
 {
@@ -39,6 +40,12 @@ class ShinobiServiceProvider extends ServiceProvider
 
 			return new \ZiNETHQ\Shinobi\Shinobi($auth);
 		});
+
+		if ($this->app->runningInConsole()) {
+            $this->commands([
+                InstallCommand::class,
+            ]);
+        }
 	}
 
 	/**
