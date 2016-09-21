@@ -74,7 +74,7 @@ class Shinobi
     public function is($role)
     {
         if ($this->auth->check()) {
-            return $this->currentTeam() ? $this->currentTeam()->is($role) : false;
+            return $this->currentTeam() ? $this->currentTeam()->isRole($role) : false;
         } else {
             if ($role === 'guest') {
                 return true;
