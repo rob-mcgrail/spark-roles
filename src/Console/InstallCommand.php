@@ -2,6 +2,7 @@
 
 namespace ZiNETHQ\Shinobi\Console;
 
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class InstallCommand extends Command
@@ -27,10 +28,12 @@ class InstallCommand extends Command
      */
     public function handle()
     {
+        $date = Carbon::now();
+
         if ($this->confirm('Installing Shinobi migrations, do you wish to continue? [y|N]')) {
             foreach ($this->getMigrations() as $key => $migration) {
 
-                $timestamp = date('Y_m_d_His', time() + $key);
+                $timestamp = $date->addSeconds($key)->format('Y_m_d_His');
 
                 copy(
                     realpath(__DIR__."/../../migrations/{$migration}.php"),
