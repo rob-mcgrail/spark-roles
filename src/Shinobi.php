@@ -31,7 +31,7 @@ class Shinobi
     public function can($permissions)
     {
         if ($this->auth->check()) {
-            return $this->auth->user()->currentTeam->can($permissions);
+            return $this->currentTeam() ? $this->currentTeam()->can($permissions) : false;
         } else {
             $guest = Role::whereSlug('guest')->first();
 
@@ -53,7 +53,7 @@ class Shinobi
     public function canAtLeast($permissions)
     {
         if ($this->auth->check()) {
-            return $this->auth->user()->currentTeam->canAtLeast($permissions);
+            return $this->currentTeam() ? $this->currentTeam()->canAtLeast($permissions) : false;
         } else {
             $guest = Role::whereSlug('guest')->first();
 
@@ -74,7 +74,7 @@ class Shinobi
     public function is($role)
     {
         if ($this->auth->check()) {
-            return $this->auth->user()->currentTeam->is($role);
+            return $this->currentTeam() ? $this->currentTeam()->is($role) : false;
         } else {
             if ($role === 'guest') {
                 return true;
@@ -82,5 +82,9 @@ class Shinobi
         }
 
         return false;
+    }
+
+    private function currentTeam() {
+        return $this->auth->user()->currentTeam;
     }
 }

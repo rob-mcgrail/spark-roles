@@ -32,7 +32,13 @@ class CurrentTeamHasRole
      */
     public function handle($request, Closure $next, $role)
     {
-        if (! $this->auth->user()->currentTeam->is($role)) {
+        $team = $this->auth->user()->currentTeam;
+
+        if(!$team) {
+            return false;
+        }
+
+        if (! $team->isRole($role)) {
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             }

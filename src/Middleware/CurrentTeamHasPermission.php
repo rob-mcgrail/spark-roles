@@ -34,7 +34,14 @@ class CurrentTeamHasPermission
     public function handle($request, Closure $next, $permissions)
     {
         if ($this->auth->check()) {
-            if (! $this->auth->user()->currentTeam->can($permissions)) {
+
+            $team = $this->auth->user()->currentTeam;
+
+            if(!$team) {
+                return false;
+            }
+
+            if (! $team->can($permissions)) {
                 if ($request->ajax()) {
                     return response('Unauthorized.', 403);
                 }
