@@ -1,5 +1,5 @@
 {
-    "name": "zinethq/sparkroles",
+    "name": "zinethq/spark-roles",
     "description": "Roles and permissions for teams in Laravel Spark, forked from caffeinated/shinobi",
     "keywords": ["shinobi", "roles", "permissions", "auth", "laravel", "caffeinated", "zinethq"],
     "license": "MIT",
