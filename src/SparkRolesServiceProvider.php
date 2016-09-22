@@ -22,8 +22,8 @@ class SparkRolesServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		$this->publishes([
-			__DIR__.'/../install-stubs/config' => $this->app->config_path(),
-			__DIR__.'/../install-stubs/model' => $this->app->app_path(),
+			__DIR__.'/../install-stubs/config' => config_path(),
+			__DIR__.'/../install-stubs/model' => app_path(),
 		]);
 
 		$this->registerBladeDirectives();
