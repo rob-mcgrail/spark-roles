@@ -1,9 +1,9 @@
 <?php
-namespace ZiNETHQ\Shinobi\Facades;
+namespace ZiNETHQ\SparkRoles\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class Shinobi extends Facade
+class SparkRoles extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -12,6 +12,6 @@ class Shinobi extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'shinobi';
+        return 'sparkroles';
     }
 }

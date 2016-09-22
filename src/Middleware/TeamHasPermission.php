@@ -1,9 +1,9 @@
 <?php
-namespace ZiNETHQ\Shinobi\Middleware;
+namespace ZiNETHQ\SparkRoles\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
-use Caffeinated\Shinobi\Models\Role;
+use Caffeinated\SparkRoles\Models\TeamRole;
 
 class CurrentTeamHasPermission
 {

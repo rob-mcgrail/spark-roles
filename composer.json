@@ -1,6 +1,6 @@
 {
-    "name": "zinethq/shinobi",
-    "description": "Laravel 5 Roles and Permissions for Spark Teams, forked from caffeinated/shinobi",
+    "name": "zinethq/sparkroles",
+    "description": "Roles and permissions for teams in Laravel Spark, forked from caffeinated/shinobi",
     "keywords": ["shinobi", "roles", "permissions", "auth", "laravel", "caffeinated", "zinethq"],
     "license": "MIT",
     "authors": [
@@ -18,16 +18,17 @@
         "illuminate/database": "5.3.*",
         "illuminate/support": "5.3.*",
         "illuminate/filesystem": "5.3.*",
-        "illuminate/config": "5.3.*"
+        "illuminate/config": "5.3.*",
+        "laravel/spark": "~2.0"
     },
     "autoload": {
         "psr-4": {
-            "ZiNETHQ\\Shinobi\\": "src/"
+            "ZiNETHQ\\SparkRoles\\": "src/"
         }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.0-dev"
+            "dev-master": "1.0-dev"
         }
     },
     "minimum-stability": "dev"

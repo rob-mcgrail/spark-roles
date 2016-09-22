@@ -1,7 +1,7 @@
 <?php
-namespace ZiNETHQ\Shinobi\Traits;
+namespace ZiNETHQ\SparkRoles\Traits;
 
-trait ShinobiTrait
+trait TeamCanHaveRoles
 {
 	/*
 	|----------------------------------------------------------------------
@@ -17,7 +17,7 @@ trait ShinobiTrait
 	 */
 	public function roles()
 	{
-		return $this->belongsToMany('\ZiNETHQ\Shinobi\Models\Role')->withTimestamps();
+		return $this->belongsToMany('\ZiNETHQ\SparkRoles\Models\TeamRole')->withTimestamps();
 	}
 
 	/**

@@ -1,54 +1,48 @@
-ZiNETHQ Shinobi
-===============
-
-**A _very_ quick and _very_ dirty fork of [Caffeinated Shinobi](https://github.com/caffeinated/shinobi/) to put RBAC into Laravel/Spark teams.**
-
-**No documentation has been updated - it all still refers to the user-based caffeinated/shinobi, but installation/usage is similar**
+# ZiNETHQ Spark Roles
 
 [![Laravel 5.3](https://img.shields.io/badge/Laravel-5.3-orange.svg?style=flat-square)](http://laravel.com)
+[![Spark 2.0](https://img.shields.io/badge/Spark-2.0-orange.svg?style=flat-square)](https://spark.laravel.com)
 [![Source](http://img.shields.io/badge/source-caffeinated/shinobi-blue.svg?style=flat-square)](https://github.com/caffeinated/shinobi)
 [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://tldrlegal.com/license/mit-license)
 
-Shinobi brings a simple and light-weight role-based permissions system to Laravel's built in Auth system. Shinobi brings support for the following ACL structure:
+SparkTeams, based on [Caffeinated Shinobi](https://github.com/caffeinated/shinobi/), brings a simple and light-weight role-based permissions system to Laravel Spark's Team system through the following ACL structure:
 
-- Every user can have zero or more roles.
-- Every role can have zero or more permissions.
+- Every team can have zero or more roles.
+- Every team can have zero or more permissions.
 
-Permissions are then inherited to the user through the user's assigned roles.
+Permissions are then inherited to the team through the team's assigned roles.
 
-The package follows the FIG standards PSR-1, PSR-2, and PSR-4 to ensure a high level of interoperability between shared PHP code. At the moment the package is not unit tested, but is planned to be covered later down the road.
+This package is in early stages of development, and is based on code that follows the FIG standards PSR-1, PSR-2, and PSR-4 to ensure a high level of interoperability between shared PHP code. At the moment the package is not unit tested, but is planned to be covered later down the road.
 
-Documentation
--------------
-You will find user friendly documentation in the wiki here: [Caffeinated Shinobi Wiki](https://github.com/caffeinated/shinobi/wiki)
+This package should co-exist with Shinobi.
 
-Quick Installation
-------------------
-Begin by installing the package through Composer. The best way to do this is through your terminal via Composer itself:
+## Documentation
+You will find user friendly documentation in the [ZiNETHQ SparkRoles Wiki](https://github.com/zinethq/sparkroles/wiki) **TO BE UPDATED**
 
-```
-composer require caffeinated/shinobi
-```
+## Quick Installation
+1. Install the package through Composer.
+    ```Bash
+    composer require zinethq/sparkroles
+    ```
+2. Add the service provider to your project's `config/app.php` file.
+    ```php
+    ZiNETHQ\SparkRoles\SparkRolesServiceProvider::class
+    ```
+3. Publish the configuration into your project's configuration.
+    ```
+    php artisan vendor:publish --tag=config
+    ```
+4. Install the migrations into your project (Spark must be installed first).
+    ```
+    php artisan spark:roles:install
+    ```
+5. Migrate.
+    ```
+    php artisan migrate
+    ```
+6. Start using team roles!
 
-Once this operation is complete, simply add the service provider to your project's `config/app.php` file and run the provided migrations against your database.
 
-### Service Provider
-```php
-Caffeinated\Shinobi\ShinobiServiceProvider::class
-```
+## Awesome Shinobi
 
-### Migrations
-You'll need to run the provided migrations against your database. Publish the migration files using the `vendor:publish` Artisan command and run `migrate`:
-
-```
-php artisan vendor:publish
-php artisan migrate
-```
-
-Awesome Shinobi
----------------
-See what the awesome community behind Shinobi has built. Created something you'd like added? Send a pull-request or open an issue!
-
-### Open Source
-
-- [The Watchtower](https://github.com/SmarchSoftware/watchtower) - A front-end (GUI) package.
+[Caffeinated Shinobi](https://github.com/caffeinated/shinobi/) is an awesome tool for Laravel that adds Role Based Access Control (RBAC) to users. Go take a look!

@@ -1,6 +1,6 @@
 <?php
 
-namespace ZiNETHQ\Shinobi\Console;
+namespace ZiNETHQ\SparkRoles\Console;
 
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -12,14 +12,14 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'shinobi:install';
+    protected $signature = 'spark:roles:install';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Install the ZiNETHQ Shinobi migrations into the application';
+    protected $description = 'Install the migrations for Spark Roles into the application';
 
     /**
      * Execute the console command.
@@ -30,7 +30,7 @@ class InstallCommand extends Command
     {
         $date = Carbon::now();
 
-        if ($this->confirm('Installing Shinobi migrations, do you wish to continue? [y|N]')) {
+        if ($this->confirm('Installing migrations for Spark Roles, do you wish to continue? [y|N]')) {
             foreach ($this->getMigrations() as $key => $migration) {
 
                 $timestamp = $date->addSeconds($key)->format('Y_m_d_His');
@@ -42,7 +42,7 @@ class InstallCommand extends Command
             }
         }
 
-        $this->comment('ZiNETHQ Shinobi installed. Inspirational phrase!');
+        $this->comment('Spark Roles installed. Inspirational phrase!');
     }
 
     /**
@@ -53,10 +53,10 @@ class InstallCommand extends Command
     protected function getMigrations()
     {
         return [
-            'create_roles_table',
-            'create_permissions_table',
-            'create_permission_role_table',
-            'create_role_team_table',
+            'create_team_roles_table',
+            'create_team_permissions_table',
+            'create_team_permission_team_role_table',
+            'create_team_team_role_table',
         ];
     }
 }

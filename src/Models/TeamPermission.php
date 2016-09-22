@@ -1,9 +1,9 @@
 <?php
-namespace ZiNETHQ\Shinobi\Models;
+namespace ZiNETHQ\SparkRoles\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Permission extends Model
+class TeamPermission extends Model
 {
 	/**
 	 * The attributes that are fillable via mass assignment.
@@ -17,7 +17,7 @@ class Permission extends Model
 	 *
 	 * @var string
 	 */
-	protected $table = 'permissions';
+	protected $table = 'team_permissions';
 
 	/**
 	 * Permissions can belong to many roles.
@@ -26,7 +26,7 @@ class Permission extends Model
 	 */
 	public function roles()
 	{
-		return $this->belongsToMany('\ZiNETHQ\Shinobi\Models\Role')->withTimestamps();
+		return $this->belongsToMany('\ZiNETHQ\SparkRoles\Models\TeamRole')->withTimestamps();
 	}
 
 	/**

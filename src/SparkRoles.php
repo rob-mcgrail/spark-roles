@@ -1,10 +1,10 @@
 <?php
-namespace ZiNETHQ\Shinobi;
+namespace ZiNETHQ\SparkRoles;
 
-use ZiNETHQ\Shinobi\Models\Role;
+use ZiNETHQ\SparkRoles\Models\Role;
 use Illuminate\Contracts\Auth\Guard;
 
-class Shinobi
+class SparkRoles
 {
     /**
      * @var Illuminate\Contracts\Auth\Guard
