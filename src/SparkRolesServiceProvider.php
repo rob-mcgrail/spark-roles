@@ -22,8 +22,9 @@ class SparkRolesServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		$this->publishes([
-			__DIR__.'/../install-stubs/config' => config_path(),
-			__DIR__.'/../install-stubs/model' => app_path(),
+			__DIR__.'/../install-stubs/config/sparkteam.php' => config_path('sparkteam.php'),
+			__DIR__.'/../install-stubs/model/TeamRole.php' => app_path('TeamRole.php'),
+			__DIR__.'/../install-stubs/model/TeamPermission.php' => app_path('TeamPermission.php'),
 		]);
 
 		$this->registerBladeDirectives();

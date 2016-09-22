@@ -30,16 +30,14 @@ class InstallCommand extends Command
     {
         $date = Carbon::now();
 
-        if ($this->confirm('Installing migrations for Spark Roles, do you wish to continue? [y|N]')) {
-            foreach ($this->getMigrations() as $key => $migration) {
+        foreach ($this->getMigrations() as $key => $migration) {
 
-                $timestamp = $date->addSeconds($key)->format('Y_m_d_His');
+            $timestamp = $date->addSeconds($key)->format('Y_m_d_His');
 
-                copy(
-                    realpath(__DIR__."/../../migrations/{$migration}.php"),
-                    database_path("migrations/{$timestamp}_{$migration}.php")
-                );
-            }
+            copy(
+                realpath(__DIR__."/../../migrations/{$migration}.php"),
+                database_path("migrations/{$timestamp}_{$migration}.php")
+            );
         }
 
         $this->comment('Spark Roles installed. Inspirational phrase!');
