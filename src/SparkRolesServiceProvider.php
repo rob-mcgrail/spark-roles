@@ -22,8 +22,9 @@ class SparkRolesServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		$this->publishes([
-			__DIR__.'/../config/sparkteam.php' => $this->app->config_path('sparkteam.php')
-		], 'config');
+			__DIR__.'/../install-stubs/config' => $this->app->config_path(),
+			__DIR__.'/../install-stubs/model' => $this->app->app_path(),
+		]);
 
 		$this->registerBladeDirectives();
 	}
@@ -36,7 +37,7 @@ class SparkRolesServiceProvider extends ServiceProvider
 	public function register()
 	{
 		$this->mergeConfigFrom(
-			__DIR__.'/../config/sparkteam.php', 'sparkteam'
+			__DIR__.'/../install-stubs/config/sparkteam.php', 'sparkteam'
 		);
 
 		$this->app->singleton('sparkroles', function ($app) {

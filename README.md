@@ -21,7 +21,7 @@ You will find user friendly documentation in the [ZiNETHQ SparkRoles Wiki](https
 
 ## Quick Installation
 1. Install the package through Composer.
-    ```Bash
+    ```bash
     composer require zinethq/sparkroles
     ```
 2. Add the service provider to your project's `config/app.php` file.
@@ -29,15 +29,15 @@ You will find user friendly documentation in the [ZiNETHQ SparkRoles Wiki](https
     ZiNETHQ\SparkRoles\SparkRolesServiceProvider::class
     ```
 3. Publish the configuration into your project's configuration.
-    ```
-    php artisan vendor:publish --tag=config
+    ```bash
+    php artisan vendor:publish --provider="ZiNETHQ\SparkRoles\SparkRolesServiceProvider"
     ```
 4. Install the migrations into your project (Spark must be installed first).
-    ```
+    ```bash
     php artisan spark:roles:install
     ```
 5. Migrate.
-    ```
+    ```bash
     php artisan migrate
     ```
 6. Start using team roles!
