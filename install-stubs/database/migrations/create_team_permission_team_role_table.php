@@ -14,8 +14,8 @@ class CreateTeamPermissionTeamRoleTable extends Migration
 	{
 		Schema::create('team_permission_team_role', function(Blueprint $table) {
 			$table->increments('id');
-			$table->integer('permission_id')->unsigned()->index();
-			$table->foreign('permission_id')->references('id')->on('team_permissions')->onDelete('cascade');
+			$table->integer('team_permission_id')->unsigned()->index();
+			$table->foreign('team_permission_id')->references('id')->on('team_permissions')->onDelete('cascade');
 			$table->integer('role_id')->unsigned()->index();
 			$table->foreign('role_id')->references('id')->on('team_roles')->onDelete('cascade');
 			$table->timestamps();
