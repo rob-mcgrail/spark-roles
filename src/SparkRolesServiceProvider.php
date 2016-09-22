@@ -22,7 +22,7 @@ class SparkRolesServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		$this->publishes([
-			__DIR__.'/../install-stubs/config/sparkteam.php' => config_path('sparkteam.php'),
+			__DIR__.'/../install-stubs/config/sparkroles.php' => config_path('sparkroles.php'),
 			__DIR__.'/../install-stubs/model/TeamRole.php' => app_path('TeamRole.php'),
 			__DIR__.'/../install-stubs/model/TeamPermission.php' => app_path('TeamPermission.php'),
 		]);
@@ -38,7 +38,7 @@ class SparkRolesServiceProvider extends ServiceProvider
 	public function register()
 	{
 		$this->mergeConfigFrom(
-			__DIR__.'/../install-stubs/config/sparkteam.php', 'sparkteam'
+			__DIR__.'/../install-stubs/config/sparkroles.php', 'sparkroles'
 		);
 
 		$this->app->singleton('sparkroles', function ($app) {
