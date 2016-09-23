@@ -1,10 +1,12 @@
 <?php
 namespace ZiNETHQ\SparkRoles;
 
-use ZiNETHQ\SparkRoles\Models\Role;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Collection;
 use Laravel\Spark\Spark;
+
+use ZiNETHQ\SparkRoles\Models\Role;
+use ZiNETHQ\SparkRoles\Traits\CanHaveRoles;
 
 class SparkRoles
 {
@@ -80,7 +82,7 @@ class SparkRoles
     public function is($role)
     {
         if ($this->auth->check()) {
-            return $this->getModels()->contains(function ($value, $key) {
+            return $this->getModels()->contains(function ($value, $key) use($role) {
                 return $value->isRole($role);
             });
         } else {
@@ -101,23 +103,29 @@ class SparkRoles
 	 */
     public function userRoleOnTeam($roles, $teamId = null) {
         $user = auth()->user();
-        $team = $teamId ? Team::find($teamId) : $user->currentTeam;
+        $teamModel = Spark::teamModel();
+        $team = $teamId ? $teamModel::find($teamId) : $user->currentTeam;
         $userRole = $team ? $user->roleOn($team) : "";
 
         return is_array(with($roles)) ? in_array($userRole, with($roles)) : with($roles) == $userRole;
     }
 
+    /**
+	 * Gets the current user and/or their current team, only if their contain the CanUseRoles trait
+	 *
+	 * @return collection
+	 */
     private function getModels() {
         $userTraits = class_uses(Spark::userModel());
         $teamTraits = class_uses(Spark::teamModel());
         $currentTeam = $this->auth->user()->currentTeam;
         $models = [];
 
-        if($userTraits && in_array('CanHaveRoles', $userTraits)) {
+        if($userTraits && in_array(CanHaveRoles::class, $userTraits)) {
             $models[] = $this->auth->user();
         }
 
-        if($teamTraits && in_array('CanHaveRoles', $teamTraits) && $currentTeam) {
+        if($teamTraits && in_array(CanHaveRoles::class, $teamTraits) && $currentTeam) {
             $models[] = $currentTeam;
         }
 

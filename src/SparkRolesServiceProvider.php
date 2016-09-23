@@ -5,11 +5,7 @@ use Blade;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 
-use Laravel\Spark\Spark;
-use Laravel\Spark\User;
-use Laravel\Spark\Team;
-
-use ZiNETHQ\SparkRoles\Models\Role;
+use ZiNETHQ\SparkRoles\SparkRoles;
 
 class SparkRolesServiceProvider extends ServiceProvider
 {
@@ -45,7 +41,7 @@ class SparkRolesServiceProvider extends ServiceProvider
 		$this->app->singleton('sparkroles', function ($app) {
 			$auth = $app->make('Illuminate\Contracts\Auth\Guard');
 
-			return new \ZiNETHQ\SparkRoles\SparkRoles($auth);
+			return new SparkRoles($auth);
 		});
 	}
 
@@ -80,7 +76,7 @@ class SparkRolesServiceProvider extends ServiceProvider
             'create_roles_table',
             'create_permissions_table',
             'create_permission_role_table',
-            'create_model_role_table',
+            'create_role_scopes_table',
         ];
     }
 

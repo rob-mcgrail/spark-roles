@@ -22,14 +22,24 @@ class Role extends Model
 	protected $table = 'roles';
 
 	/**
-	 * Roles can belong to many models (teams or users).
+	 * Get all users assigned to this role.
 	 *
 	 * @return Model
 	 */
-	public function models()
-	{
-		return $this->morphTo()->withTimestamps();
-	}
+	public function users()
+    {
+        return $this->morphedByMany(Spark::userModel(), 'role_scope');
+    }
+
+    /**
+	 * Get all teams assigned to this role.
+	 *
+	 * @return Model
+	 */
+    public function teams()
+    {
+        return $this->morphedByMany(Spark::teamModel(), 'role_scope');
+    }
 
 	/**
 	 * Roles can have many permissions.
