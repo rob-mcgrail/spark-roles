@@ -38,14 +38,11 @@ You will find user friendly documentation in the [ZiNETHQ SparkRoles Wiki](https
     ```php
     ZiNETHQ\SparkRoles\SparkRolesServiceProvider::class
     ```
-5. **Optional:** If you'd like to dynamically assign the Spark developer array based on team/user roles then open `app\Http\kernel.php` from:
+5. **Optional:** If you'd like to dynamically assign the Spark developer array based on team/user roles then open `app\Http\kernel.php` and add the following to the `web` middleware group:
     ```php
-    'dev' => \Laravel\Spark\Http\Middleware\VerifyUserIsDeveloper::class,
+    \ZiNETHQ\SparkRoles\Middleware\AddDevelopers::class,
     ```
-    to:
-    ```php
-    'dev' => \ZiNETHQ\SparkRoles\Middleware\VerifyUserIsDeveloper::class,
-    ```
+    Note that this middleware can be disabled, and the slug that identified developers, can be controlled in the package config.
 6. Start using team roles!
 
 

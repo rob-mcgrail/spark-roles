@@ -52,6 +52,6 @@ class AddDevelopers
 				Spark::developers(array_merge(Spark::developers, $developers));
 			}
 		}
-        return parent::handle($request, $next);
+        return $next($request);
     }
 }
