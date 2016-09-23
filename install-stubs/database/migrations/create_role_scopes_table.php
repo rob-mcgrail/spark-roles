@@ -16,9 +16,9 @@ class CreateRoleScopesTable extends Migration
 			$table->increments('id');
 			$table->integer('role_id')->unsigned()->index();
 			$table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
-			$table->morphs('scope');
+			$table->morphs('role_scope');
 			$table->timestamps();
-			$table->unique(['role_id', 'scope_type', 'scope_id'], 'role_scope_unique');
+			$table->unique(['role_id', 'role_scope_type', 'role_scope_id'], 'role_scope_unique');
 		});
 	}
 
