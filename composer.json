@@ -6,7 +6,9 @@
     "authors": [
         {
             "name": "Jon Nicholson",
-            "email": "jon.nicholson@zinethq.com"
+            "email": "jon.nicholson@zinethq.com",
+            "homepage": "http://www.zinethq.com",
+            "role": "Developer"
         }
     ],
     "require": {
@@ -24,8 +26,8 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "1.0.x-dev"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }
