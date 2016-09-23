@@ -4,7 +4,6 @@ namespace ZiNETHQ\SparkRoles;
 use Blade;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
-use ZiNETHQ\SparkRoles\Console\InstallCommand;
 
 class SparkRolesServiceProvider extends ServiceProvider
 {
@@ -42,12 +41,6 @@ class SparkRolesServiceProvider extends ServiceProvider
 
 			return new \ZiNETHQ\SparkRoles\SparkRoles($auth);
 		});
-
-		if ($this->app->runningInConsole()) {
-            $this->commands([
-                InstallCommand::class,
-            ]);
-        }
 	}
 
 	/**
