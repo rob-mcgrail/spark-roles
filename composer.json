@@ -1,6 +1,6 @@
 {
     "name": "zinethq/spark-roles",
-    "description": "Roles and permissions for teams and users in Laravel Spark, forked from caffeinated/shinobi",
+    "description": "Roles and permissions for teams and users in Laravel Spark, based on caffeinated/shinobi",
     "keywords": ["caffeinated", "shinobi", "roles", "permissions", "auth", "team", "user", "laravel", "spark", "zinethq"],
     "license": "MIT",
     "authors": [
