@@ -80,7 +80,7 @@ class SparkRoles
     public function is($role)
     {
         if ($this->auth->check()) {
-            return $this->getModels()->contains(function ($value, $key) {
+            return $this->getModels()->contains(function ($value, $key) use($role) {
                 return $value->isRole($role);
             });
         } else {
@@ -114,16 +114,17 @@ class SparkRoles
 	 * @return collection
 	 */
     private function getModels() {
+        $trait = 'ZiNETHQ\SparkRoles\Traits\CanHaveRoles';
         $userTraits = class_uses(Spark::userModel());
         $teamTraits = class_uses(Spark::teamModel());
         $currentTeam = $this->auth->user()->currentTeam;
         $models = [];
 
-        if($userTraits && in_array('CanHaveRoles', $userTraits)) {
+        if($userTraits && in_array($trait, $userTraits)) {
             $models[] = $this->auth->user();
         }
 
-        if($teamTraits && in_array('CanHaveRoles', $teamTraits) && $currentTeam) {
+        if($teamTraits && in_array($trait, $teamTraits) && $currentTeam) {
             $models[] = $currentTeam;
         }
 
