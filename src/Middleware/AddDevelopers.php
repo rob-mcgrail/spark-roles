@@ -5,11 +5,9 @@ namespace ZiNETHQ\SparkRoles\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-use Laravel\Spark\Http\Middleware\VerifyUserIsDeveloper as SparkVerifyUserIsDeveloper;
-
 use ZiNETHQ\SparkRoles\Models\Role;
 
-class VerifyUserIsDeveloper extends SparkVerifyUserIsDeveloper
+class AddDevelopers
 {
     /**
      * @var Illuminate\Contracts\Auth\Guard

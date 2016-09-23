@@ -102,7 +102,7 @@ class SparkRoles
     public function userRoleOnTeam($roles, $teamId = null) {
         $user = auth()->user();
         $teamModel = Spark::teamModel();
-        $team = $teamId ? $teammodel::find($teamId) : $user->currentTeam;
+        $team = $teamId ? $teamModel::find($teamId) : $user->currentTeam;
         $userRole = $team ? $user->roleOn($team) : "";
 
         return is_array(with($roles)) ? in_array($userRole, with($roles)) : with($roles) == $userRole;
