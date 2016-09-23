@@ -29,7 +29,6 @@ class SparkRolesServiceProvider extends ServiceProvider
 	{
 		$this->publish();
 		$this->registerBladeDirectives();
-		$this->registerDevelopers();
 	}
 
 	/**
@@ -132,27 +131,6 @@ class SparkRolesServiceProvider extends ServiceProvider
 
 	protected function getArguments($arguments, $count, $padding = null) {
 		return array_pad(explode(',', str_replace(['(',')',' ', "'"], '', $arguments)), $count, $padding);
-	}
-
-	protected function registerDevelopers() {
-		if(config('sparkroles.developer.enable')) {
-			$role = Role::where('slug', config('sparkroles.developer.slug'));
-			if($role) {
-				$developers = [];
-				foreach($role->models as $model) {
-					if($model instanceof User) {
-						$developers[] = $model->email;
-					}
-
-					if($model instanceof Team) {
-						foreach($model->users as $user) {
-							$developers[] = $user->email;
-						}
-					}
-				}
-				Spark::developers(array_merge(Spark::developers, $developers));
-			}
-		}
 	}
 
 	/**

@@ -1,4 +1,5 @@
 <?php
+
 namespace ZiNETHQ\SparkRoles\Middleware;
 
 use Closure;
@@ -41,7 +42,7 @@ class HasPermission
                 return false;
             }
 
-            if (! $team->can($permissions)) {
+            if (! $team->can($permissions)  !$team->can($permissions)) {
                 if ($request->ajax()) {
                     return response('Unauthorized.', 403);
                 }

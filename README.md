@@ -26,19 +26,27 @@ You will find user friendly documentation in the [ZiNETHQ SparkRoles Wiki](https
     ```bash
     composer require zinethq/sparkroles
     ```
-2. Add the service provider to your project's `config/app.php` file.
-    ```php
-    ZiNETHQ\SparkRoles\SparkRolesServiceProvider::class
-    ```
-3. Publish the configuration into your project's configuration.
+2. Publish the configuration into your project's configuration.
     ```bash
     php artisan vendor:publish --provider="ZiNETHQ\SparkRoles\SparkRolesServiceProvider"
     ```
-4. Migrate.
+3. Migrate.
     ```bash
     php artisan migrate
     ```
-5. Start using team roles!
+4. Add the service provider to your project's `config/app.php` file.
+    ```php
+    ZiNETHQ\SparkRoles\SparkRolesServiceProvider::class
+    ```
+5. **Optional:** If you'd like to dynamically assign the Spark developer array based on team/user roles then open `app\Http\kernel.php` from:
+    ```php
+    'dev' => \Laravel\Spark\Http\Middleware\VerifyUserIsDeveloper::class,
+    ```
+    to:
+    ```php
+    'dev' => \ZiNETHQ\SparkRoles\Middleware\VerifyUserIsDeveloper::class,
+    ```
+6. Start using team roles!
 
 
 ## Awesome Shinobi

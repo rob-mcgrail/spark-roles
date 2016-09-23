@@ -1,4 +1,5 @@
 <?php
+
 namespace ZiNETHQ\SparkRoles\Middleware;
 
 use Closure;
