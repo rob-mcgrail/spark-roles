@@ -1,10 +1,12 @@
 <?php
 namespace ZiNETHQ\SparkRoles;
 
-use ZiNETHQ\SparkRoles\Models\Role;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Collection;
 use Laravel\Spark\Spark;
+
+use ZiNETHQ\SparkRoles\Models\Role;
+use ZiNETHQ\SparkRoles\Traits\CanHaveRoles;
 
 class SparkRoles
 {
@@ -114,17 +116,16 @@ class SparkRoles
 	 * @return collection
 	 */
     private function getModels() {
-        $trait = 'ZiNETHQ\SparkRoles\Traits\CanHaveRoles';
         $userTraits = class_uses(Spark::userModel());
         $teamTraits = class_uses(Spark::teamModel());
         $currentTeam = $this->auth->user()->currentTeam;
         $models = [];
 
-        if($userTraits && in_array($trait, $userTraits)) {
+        if($userTraits && in_array(CanHaveRoles::class, $userTraits)) {
             $models[] = $this->auth->user();
         }
 
-        if($teamTraits && in_array($trait, $teamTraits) && $currentTeam) {
+        if($teamTraits && in_array(CanHaveRoles::class, $teamTraits) && $currentTeam) {
             $models[] = $currentTeam;
         }
 
