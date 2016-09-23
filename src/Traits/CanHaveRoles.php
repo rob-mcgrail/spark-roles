@@ -1,7 +1,7 @@
 <?php
 namespace ZiNETHQ\SparkRoles\Traits;
 
-trait TeamCanHaveRoles
+trait CanHaveRoles
 {
 	/*
 	|----------------------------------------------------------------------

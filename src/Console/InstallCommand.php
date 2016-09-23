@@ -35,7 +35,7 @@ class InstallCommand extends Command
             $timestamp = $date->addSeconds($key)->format('Y_m_d_His');
 
             copy(
-                realpath(__DIR__."/../../install/stubs-database/migrations/{$migration}.php"),
+                realpath(__DIR__."/../../install-stubs/database/migrations/{$migration}.php"),
                 database_path("migrations/{$timestamp}_{$migration}.php")
             );
         }
