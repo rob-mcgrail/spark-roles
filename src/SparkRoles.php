@@ -107,6 +107,11 @@ class SparkRoles
         return is_array(with($roles)) ? in_array($userRole, with($roles)) : with($roles) == $userRole;
     }
 
+    /**
+	 * Gets the current user and/or their current team, only if their contain the CanUseRoles trait
+	 *
+	 * @return collection
+	 */
     private function getModels() {
         $userTraits = class_uses(Spark::userModel());
         $teamTraits = class_uses(Spark::teamModel());

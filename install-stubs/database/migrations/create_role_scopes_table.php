@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateModelRoleTable extends Migration
+class CreateRoleScopesTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -12,13 +12,13 @@ class CreateModelRoleTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('model_role', function(Blueprint $table) {
+		Schema::create('role_scopes', function(Blueprint $table) {
 			$table->increments('id');
 			$table->integer('role_id')->unsigned()->index();
 			$table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
-			$table->morphs('model');
+			$table->morphs('scope');
 			$table->timestamps();
-			$table->unique(['role_id', 'model_type', 'model_id'], 'model_role_unique');
+			$table->unique(['role_id', 'scope_type', 'scope_id'], 'role_scope_unique');
 		});
 	}
 
@@ -29,6 +29,6 @@ class CreateModelRoleTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('model_role');
+		Schema::drop('role_scopes');
 	}
 }
