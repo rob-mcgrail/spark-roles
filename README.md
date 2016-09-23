@@ -2,7 +2,7 @@
 
 [![Laravel 5.3](https://img.shields.io/badge/Laravel-5.3-orange.svg?style=flat-square)](http://laravel.com)
 [![Spark 2.0](https://img.shields.io/badge/Spark-2.0-orange.svg?style=flat-square)](https://spark.laravel.com)
-[![Source](http://img.shields.io/badge/source-caffeinated/shinobi-blue.svg?style=flat-square)](https://github.com/caffeinated/shinobi)
+[![Source](http://img.shields.io/badge/source-zinethq/spark--roles-blue.svg?style=flat-square)](https://github.com/zinethq/spark-roles)
 [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://tldrlegal.com/license/mit-license)
 
 SparkRoles, based on [Caffeinated Shinobi](https://github.com/caffeinated/shinobi/), brings a simple and light-weight role-based permissions system to Laravel Spark's Team and User models through the following ACL structure:
@@ -19,12 +19,12 @@ Permissions are then inherited to the team/user through the team/user's assigned
 This package is a replacement for [Caffeinated Shinobi](https://github.com/caffeinated/shinobi/) when building a project based on `Laravel/Spark`.
 
 ## Documentation
-You will find user friendly documentation in the [ZiNETHQ SparkRoles Wiki](https://github.com/zinethq/sparkroles/wiki) **TO BE UPDATED**
+You will find user friendly documentation in the [ZiNETHQ SparkRoles Wiki](https://github.com/zinethq/spark-roles/wiki) **TO BE UPDATED**
 
 ## Quick Installation
 1. Install the package through Composer.
     ```bash
-    composer require zinethq/sparkroles
+    composer require zinethq/spark-roles
     ```
 2. Publish the configuration into your project's configuration.
     ```bash
