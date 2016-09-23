@@ -50,25 +50,21 @@ class SparkRolesServiceProvider extends ServiceProvider
 
 		if(config('sparkroles.developer.enable')) {
 			$role = Role::where('slug', config('sparkroles.developer.slug'));
-			if(!$role) {
-				break;
-			}
+			if($role) {
+				$developers = [];
+				foreach($role->models as $model) {
+					if($model instanceof User) {
+						$developers[] = $model->email;
+					}
 
-			$developers = [];
-
-			foreach($role->models as $model) {
-				if($model instanceof User) {
-					$developers[] = $model->email;
-				}
-
-				if($model instanceof Team) {
-					foreach($model->users as $user) {
-						$developers[] = $user->email;
+					if($model instanceof Team) {
+						foreach($model->users as $user) {
+							$developers[] = $user->email;
+						}
 					}
 				}
+				Spark::developers(array_merge(Spark::developers, $developers));
 			}
-
-			Spark::developers(array_merge(Spark::developers, $developers));
 		}
 	}
 
