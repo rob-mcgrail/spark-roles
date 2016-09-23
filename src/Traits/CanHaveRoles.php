@@ -11,17 +11,17 @@ trait CanHaveRoles
 	*/
 
 	/**
-	 * Teams can have many roles.
+	 * A model can have many roles.
 	 *
 	 * @return Illuminate\Database\Eloquent\Model
 	 */
 	public function roles()
 	{
-		return $this->belongsToMany('\ZiNETHQ\SparkRoles\Models\TeamRole')->withTimestamps();
+		return $this->morphMany('\ZiNETHQ\SparkRoles\Models\Role', 'model')->withTimestamps();
 	}
 
 	/**
-	 * Get all team's' roles.
+	 * Get all model's roles.
 	 *
 	 * @return array|null
 	 */
@@ -35,7 +35,7 @@ trait CanHaveRoles
 	}
 
 	/**
-	 * Checks if the team has the given role.
+	 * Checks if the model has the given role.
 	 *
 	 * @param  string $slug
 	 * @return bool
@@ -52,7 +52,7 @@ trait CanHaveRoles
 	}
 
 	/**
-	 * Assigns the given role to the team.
+	 * Assigns the given role to the model.
 	 *
 	 * @param  int $roleId
 	 * @return bool
@@ -69,7 +69,7 @@ trait CanHaveRoles
 	}
 
 	/**
-	 * Revokes the given role from the team.
+	 * Revokes the given role from the model.
 	 *
 	 * @param  int $roleId
 	 * @return bool
@@ -80,7 +80,7 @@ trait CanHaveRoles
 	}
 
 	/**
-	 * Syncs the given role(s) with the team.
+	 * Syncs the given role(s) with the model.
 	 *
 	 * @param  array $roleIds
 	 * @return bool
@@ -91,7 +91,7 @@ trait CanHaveRoles
 	}
 
 	/**
-	 * Revokes all roles from the team.
+	 * Revokes all roles from the model.
 	 *
 	 * @return bool
 	 */
@@ -108,7 +108,7 @@ trait CanHaveRoles
 	*/
 
 	/**
-	 * Get all team role permissions.
+	 * Get all model role permissions.
 	 *
 	 * @return array|null
 	 */
@@ -124,7 +124,7 @@ trait CanHaveRoles
 	}
 
 	/**
-	 * Check if team has the given permission.
+	 * Check if model has the given permission.
 	 *
 	 * @param  string $permission
 	 * @param array $arguments
@@ -152,7 +152,7 @@ trait CanHaveRoles
 	}
 
 	/**
-	 * Check if team has at least one of the given permissions
+	 * Check if model has at least one of the given permissions
 	 *
 	 * @param  array $permissions
 	 * @return bool

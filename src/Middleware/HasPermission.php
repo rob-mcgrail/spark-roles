@@ -3,9 +3,9 @@ namespace ZiNETHQ\SparkRoles\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
-use Caffeinated\SparkRoles\Models\TeamRole;
+use ZiNETHQ\SparkRoles\Models\Role;
 
-class CurrentTeamHasPermission
+class HasPermission
 {
     /**
      * @var Illuminate\Contracts\Auth\Guard
@@ -13,7 +13,7 @@ class CurrentTeamHasPermission
     protected $auth;
 
     /**
-     * Create a new CurrentTeamHasPermission instance.
+     * Create a new HasPermission instance.
      *
      * @param Guard $auth
      */

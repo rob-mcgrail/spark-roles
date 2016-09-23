@@ -3,6 +3,8 @@ namespace ZiNETHQ\SparkRoles;
 
 use ZiNETHQ\SparkRoles\Models\Role;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Support\Collection;
+use Laravel\Spark\Spark;
 
 class SparkRoles
 {
@@ -12,7 +14,7 @@ class SparkRoles
     protected $auth;
 
     /**
-     * Create a new TeamHasPermission instance.
+     * Create a new HasPermission instance.
      *
      * @param Guard $auth
      */
@@ -22,7 +24,7 @@ class SparkRoles
     }
 
     /**
-     * Checks if Team has the given permissions.
+     * Checks if model has the given permissions.
      *
      * @param array|string $permissions
      *
@@ -31,7 +33,9 @@ class SparkRoles
     public function can($permissions)
     {
         if ($this->auth->check()) {
-            return $this->currentTeam() ? $this->currentTeam()->can($permissions) : false;
+            return $this->getModels()->contains(function ($value, $key) {
+                return $value->can($permissions);
+            });
         } else {
             $guest = Role::whereSlug('guest')->first();
 
@@ -44,7 +48,7 @@ class SparkRoles
     }
 
     /**
-     * Checks if user has at least one of the given permissions.
+     * Checks if model has at least one of the given permissions.
      *
      * @param array $permissions
      *
@@ -53,7 +57,9 @@ class SparkRoles
     public function canAtLeast($permissions)
     {
         if ($this->auth->check()) {
-            return $this->currentTeam() ? $this->currentTeam()->canAtLeast($permissions) : false;
+            return $this->getModels()->contains(function ($value, $key) {
+                return $value->canAtLeast($permissions);
+            });
         } else {
             $guest = Role::whereSlug('guest')->first();
 
@@ -66,7 +72,7 @@ class SparkRoles
     }
 
     /**
-	 * Checks if user is assigned the given role.
+	 * Checks if model is assigned the given role.
 	 *
 	 * @param  string $slug
 	 * @return bool
@@ -74,7 +80,9 @@ class SparkRoles
     public function is($role)
     {
         if ($this->auth->check()) {
-            return $this->currentTeam() ? $this->currentTeam()->isRole($role) : false;
+            return $this->getModels()->contains(function ($value, $key) {
+                return $value->isRole($role);
+            });
         } else {
             if ($role === 'guest') {
                 return true;
@@ -84,7 +92,20 @@ class SparkRoles
         return false;
     }
 
-    private function currentTeam() {
-        return $this->auth->user()->currentTeam;
+    private function getModels() {
+        $userTraits = class_uses(Spark::userModel());
+        $teamTraits = class_uses(Spark::teamModel());
+        $currentTeam = $this->auth->user()->currentTeam;
+        $models = [];
+
+        if($userTraits && in_array('CanHaveRoles', $userTraits)) {
+            $models[] = $this->auth->user();
+        }
+
+        if($teamTraits && in_array('CanHaveRoles', $teamTraits) && $currentTeam) {
+            $models[] = $currentTeam;
+        }
+
+        return collect($models);
     }
 }

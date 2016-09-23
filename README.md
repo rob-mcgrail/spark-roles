@@ -5,16 +5,17 @@
 [![Source](http://img.shields.io/badge/source-caffeinated/shinobi-blue.svg?style=flat-square)](https://github.com/caffeinated/shinobi)
 [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://tldrlegal.com/license/mit-license)
 
-SparkTeams, based on [Caffeinated Shinobi](https://github.com/caffeinated/shinobi/), brings a simple and light-weight role-based permissions system to Laravel Spark's Team system through the following ACL structure:
+SparkRoles, based on [Caffeinated Shinobi](https://github.com/caffeinated/shinobi/), brings a simple and light-weight role-based permissions system to Laravel Spark's Team and User models through the following ACL structure:
 
+- Every user can have zero or more roles.
+- Every user can have zero or more permissions.
 - Every team can have zero or more roles.
 - Every team can have zero or more permissions.
+- Roles and permissions can be shared between users and teams.
 
-Permissions are then inherited to the team through the team's assigned roles.
+Permissions are then inherited to the team/user through the team/user's assigned roles.
 
-This package is in early stages of development, and is based on code that follows the FIG standards PSR-1, PSR-2, and PSR-4 to ensure a high level of interoperability between shared PHP code. At the moment the package is not unit tested, but is planned to be covered later down the road.
-
-This package should co-exist with Shinobi.
+This package is a replacement for [Caffeinated Shinobi](https://github.com/caffeinated/shinobi/) when building a project based on `Laravel/Spark`.
 
 ## Documentation
 You will find user friendly documentation in the [ZiNETHQ SparkRoles Wiki](https://github.com/zinethq/sparkroles/wiki) **TO BE UPDATED**
@@ -32,15 +33,11 @@ You will find user friendly documentation in the [ZiNETHQ SparkRoles Wiki](https
     ```bash
     php artisan vendor:publish --provider="ZiNETHQ\SparkRoles\SparkRolesServiceProvider"
     ```
-4. Install the migrations into your project (Spark must be installed first).
-    ```bash
-    php artisan spark:roles:install
-    ```
-5. Migrate.
+4. Migrate.
     ```bash
     php artisan migrate
     ```
-6. Start using team roles!
+5. Start using team roles!
 
 
 ## Awesome Shinobi

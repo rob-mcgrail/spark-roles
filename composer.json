@@ -1,16 +1,12 @@
 {
     "name": "zinethq/spark-roles",
-    "description": "Roles and permissions for teams in Laravel Spark, forked from caffeinated/shinobi",
-    "keywords": ["shinobi", "roles", "permissions", "auth", "laravel", "caffeinated", "zinethq"],
+    "description": "Roles and permissions for teams and users in Laravel Spark, forked from caffeinated/shinobi",
+    "keywords": ["caffeinated", "shinobi", "roles", "permissions", "auth", "team", "user", "laravel", "spark", "zinethq"],
     "license": "MIT",
     "authors": [
         {
             "name": "Jon Nicholson",
             "email": "jon.nicholson@zinethq.com"
-        },
-        {
-            "name": "Shea Lewis",
-            "email": "shea.lewis89@gmail.com"
         }
     ],
     "require": {

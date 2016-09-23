@@ -5,7 +5,7 @@ use Config;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Spark\Spark;
 
-class TeamRole extends Model
+class Role extends Model
 {
 	/**
 	 * The attributes that are fillable via mass assignment.
@@ -19,16 +19,16 @@ class TeamRole extends Model
 	 *
 	 * @var string
 	 */
-	protected $table = 'team_roles';
+	protected $table = 'roles';
 
 	/**
-	 * Roles can belong to many teams.
+	 * Roles can belong to many models (teams or users).
 	 *
 	 * @return Model
 	 */
-	public function teams()
+	public function models()
 	{
-		return $this->belongsToMany(Spark::teamModel())->withTimestamps();
+		return $this->morphTo()->withTimestamps();
 	}
 
 	/**
@@ -38,7 +38,7 @@ class TeamRole extends Model
 	 */
 	public function permissions()
 	{
-		return $this->belongsToMany('\ZiNETHQ\SparkRoles\Models\TeamPermission')->withTimestamps();
+		return $this->belongsToMany('\ZiNETHQ\SparkRoles\Models\Permission')->withTimestamps();
 	}
 
 	/**
