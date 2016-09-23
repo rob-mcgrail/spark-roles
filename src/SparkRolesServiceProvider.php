@@ -5,6 +5,12 @@ use Blade;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 
+use Laravel\Spark\Spark;
+use Laravel\Spark\User;
+use Laravel\Spark\Team;
+
+use ZiNETHQ\SparkRoles\Models\Role;
+
 class SparkRolesServiceProvider extends ServiceProvider
 {
 	/**
@@ -41,6 +47,29 @@ class SparkRolesServiceProvider extends ServiceProvider
 
 			return new \ZiNETHQ\SparkRoles\SparkRoles($auth);
 		});
+
+		if(config('sparkroles.developer.enable')) {
+			$role = Role::where('slug', config('sparkroles.developer.slug'));
+			if(!$role) {
+				break;
+			}
+
+			$developers = [];
+
+			foreach($role->models as $model) {
+				if($model instanceof User) {
+					$developers[] = $model->email;
+				}
+
+				if($model instanceof Team) {
+					foreach($model->users as $user) {
+						$developers[] = $user->email;
+					}
+				}
+			}
+
+			Spark::developers(array_merge(Spark::developers, $developers));
+		}
 	}
 
 	/**
@@ -110,8 +139,7 @@ class SparkRolesServiceProvider extends ServiceProvider
 		});
 
 		Blade::directive('roleonteam', function($arguments) {
-            $clean = str_replace(['(',')',' ', "'"], '', $arguments);
-            list($roles, $team_id) = array_pad(explode(',', $clean), 2, null);
+            list($roles, $team_id) = $this->getArguments($arguments, 2);
             return "<?php if(\\SparkRoles::userRoleOnTeam('{$roles}', '{$team_id}')) : ?>";
         });
 
@@ -122,6 +150,10 @@ class SparkRolesServiceProvider extends ServiceProvider
         });
 
         Blade::directive('endhascurrentteam', function() { return "<?php endif; ?>"; });
+	}
+
+	protected function getArguments($arguments, $count, $padding = null) {
+		return array_pad(explode(',', str_replace(['(',')',' ', "'"], '', $arguments)), $count, $padding);
 	}
 
 	/**

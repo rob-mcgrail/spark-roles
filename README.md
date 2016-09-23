@@ -12,6 +12,7 @@ SparkRoles, based on [Caffeinated Shinobi](https://github.com/caffeinated/shinob
 - Every team can have zero or more roles.
 - Every team can have zero or more permissions.
 - Roles and permissions can be shared between users and teams.
+- Optionally, users and teams with a certain role (e.g. `developer`) are added to the Spark developer's array.
 
 Permissions are then inherited to the team/user through the team/user's assigned roles.
 
