@@ -51,14 +51,14 @@ class SparkRolesServiceProvider extends ServiceProvider
 	protected function publish() {
 		$publishes = [];
 		$date = Carbon::now();
-		$stubs = __DIR__.'/../../install-stubs';
+		$stubs = __DIR__.'/../install-stubs';
 
         foreach ($this->getMigrations() as $key => $migration) {
             $timestamp = $date->addSeconds($key)->format('Y_m_d_His');
 			$publishes["{$stubs}/database/migrations/{$migration}.php"] = database_path("migrations/{$timestamp}_{$migration}.php");
         }
-		$publishes[realpath("{$stubs}/../install-stubs/config")] = config_path();
-		$publishes[realpath("{$stubs}/../install-stubs/model")] = app_path();
+		$publishes[realpath("{$stubs}/config")] = config_path();
+		$publishes[realpath("{$stubs}/model")] = app_path();
 
 		$this->publishes($publishes);
 	}
@@ -108,6 +108,20 @@ class SparkRolesServiceProvider extends ServiceProvider
 		Blade::directive('endrole', function($expression) {
 			return "<?php endif; ?>";
 		});
+
+		Blade::directive('roleonteam', function($arguments) {
+            $clean = str_replace(['(',')',' ', "'"], '', $arguments);
+            list($roles, $team_id) = array_pad(explode(',', $clean), 2, null);
+            return "<?php if(\\SparkRoles::userRoleOnTeam('{$roles}', '{$team_id}')) : ?>";
+        });
+
+        Blade::directive('endroleonteam', function() { return "<?php endif; ?>"; });
+
+		Blade::directive('hascurrentteam', function() {
+            return "<?php if(Auth::user()->currentTeam) : ?>";
+        });
+
+        Blade::directive('endhascurrentteam', function() { return "<?php endif; ?>"; });
 	}
 
 	/**

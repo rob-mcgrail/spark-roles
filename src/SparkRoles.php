@@ -92,6 +92,21 @@ class SparkRoles
         return false;
     }
 
+    /**
+	 * Checks if the logged in user has a (Spark native) role within the given or current team.
+	 *
+	 * @param  array $roles
+     * @param  numeric $teamId
+	 * @return bool
+	 */
+    public function userRoleOnTeam($roles, $teamId = null) {
+        $user = auth()->user();
+        $team = $teamId ? Team::find($teamId) : $user->currentTeam;
+        $userRole = $team ? $user->roleOn($team) : "";
+
+        return is_array(with($roles)) ? in_array($userRole, with($roles)) : with($roles) == $userRole;
+    }
+
     private function getModels() {
         $userTraits = class_uses(Spark::userModel());
         $teamTraits = class_uses(Spark::teamModel());
