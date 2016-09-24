@@ -19,33 +19,87 @@ Permissions are then inherited to the team/user through the team/user's assigned
 This package is a replacement for [Caffeinated Shinobi](https://github.com/caffeinated/shinobi/) when building a project based on `Laravel/Spark`.
 
 ## Documentation
-You will find user friendly documentation in the [ZiNETHQ SparkRoles Wiki](https://github.com/zinethq/spark-roles/wiki) **TO BE UPDATED**
+You will find user friendly documentation in the [ZiNETHQ SparkRoles Wiki](https://github.com/zinethq/spark-roles/wiki) **BEING UPDATED**
 
 ## Quick Installation
 1. Install the package through Composer.
+
     ```bash
     composer require zinethq/spark-roles
     ```
-2. Publish the configuration into your project's configuration.
+
+2. Publish the configuration, models, and migrations into your project.
+
     ```bash
     php artisan vendor:publish --provider="ZiNETHQ\SparkRoles\SparkRolesServiceProvider"
     ```
-3. Migrate.
+
+3. Migrate your database.
+
     ```bash
     php artisan migrate
     ```
+
 4. Add the service provider to your project's `config/app.php` file.
+
     ```php
-    ZiNETHQ\SparkRoles\SparkRolesServiceProvider::class
+    ZiNETHQ\SparkRoles\SparkRolesServiceProvider::class,
     ```
-5. **Optional:** If you'd like to dynamically assign the Spark developer array based on team/user roles then open `app\Http\kernel.php` and add the following to the `web` middleware group:
+
+5. Add the `CanUseRoles` trait to your `Team` and/or `User` models, for example:
+
+    - `app\Team.php`
+    ```php
+    <?php
+
+    namespace App;
+
+    use Laravel\Spark\Team as SparkTeam;
+    use ZiNETHQ\SparkRoles\Traits\CanHaveRoles;
+
+    class Team extends SparkTeam
+    {
+        use CanHaveRoles;
+        ...
+    }
+    ```
+
+    - `app\User.php`
+    ```php
+    <?php
+
+    namespace App;
+
+    use Laravel\Spark\User as SparkUser;
+    use ZiNETHQ\SparkRoles\Traits\CanHaveRoles;
+
+    class User extends SparkUser
+    {
+        use CanHaveRoles;
+        ...
+    }
+    ```
+
+6. **Optional:** If you'd like to dynamically assign the Spark developer array based on team/user roles then open `app\Http\kernel.php` and add the following to the `web` middleware group:
+
     ```php
     \ZiNETHQ\SparkRoles\Middleware\AddDevelopers::class,
     ```
-    Note that this middleware can be disabled, and the slug that identified developers, can be controlled in the package config.
-6. Start using team roles!
+
+    This middleware can be controlled (enabled/disabled and choose the role slug that identifies developers) in the package's configuration file.
+
+7. Start using roles for your Spark teams and users!
+
+## Contributing
+Fork, edit, pull request. You know the drill.
+
+### Things to do
+If you'd like to contribute consider helping with one of the following:
+
+- [] Add unit testing.
+- [] Add a Kiosk based frontend for defining roles and permissions, similar to [Watchtower](https://github.com/SmarchSoftware/watchtower) for [Shinobi](https://github.com/caffeinated/shinobi/).
 
 
 ## Awesome Shinobi
 
-[Caffeinated Shinobi](https://github.com/caffeinated/shinobi/) is an awesome tool for Laravel that adds Role Based Access Control (RBAC) to users. Go take a look!
+[Caffeinated Shinobi](https://github.com/caffeinated/shinobi/) is an awesome tool for Laravel that adds Role Based Access Control (RBAC) to your user model. There is also a cool UI for Shinobi called [Watchtower](https://github.com/SmarchSoftware/watchtower). Go take a look!
