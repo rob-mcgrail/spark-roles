@@ -74,15 +74,15 @@ class SparkRoles
     }
 
     /**
-	 * Checks if model is assigned the given role.
-	 *
-	 * @param  string $slug
-	 * @return bool
-	 */
+     * Checks if model is assigned the given role.
+     *
+     * @param  string $slug
+     * @return bool
+     */
     public function is($role)
     {
         if ($this->auth->check()) {
-            return $this->getModels()->contains(function ($value, $key) use($role) {
+            return $this->getModels()->contains(function ($value, $key) use ($role) {
                 return $value->isRole($role);
             });
         } else {
@@ -95,13 +95,14 @@ class SparkRoles
     }
 
     /**
-	 * Checks if the logged in user has a (Spark native) role within the given or current team.
-	 *
-	 * @param  array $roles
+     * Checks if the logged in user has a (Spark native) role within the given or current team.
+     *
+     * @param  array $roles
      * @param  numeric $teamId
-	 * @return bool
-	 */
-    public function userRoleOnTeam($roles, $teamId = null) {
+     * @return bool
+     */
+    public function userRoleOnTeam($roles, $teamId = null)
+    {
         $user = auth()->user();
         $teamModel = Spark::teamModel();
         $team = $teamId ? $teamModel::find($teamId) : $user->currentTeam;
@@ -111,21 +112,22 @@ class SparkRoles
     }
 
     /**
-	 * Gets the current user and/or their current team, only if their contain the CanUseRoles trait
-	 *
-	 * @return collection
-	 */
-    private function getModels() {
+     * Gets the current user and/or their current team, only if their contain the CanUseRoles trait
+     *
+     * @return collection
+     */
+    private function getModels()
+    {
         $userTraits = class_uses(Spark::userModel());
         $teamTraits = class_uses(Spark::teamModel());
         $currentTeam = $this->auth->user()->currentTeam;
         $models = [];
 
-        if($userTraits && in_array(CanHaveRoles::class, $userTraits)) {
+        if ($userTraits && in_array(CanHaveRoles::class, $userTraits)) {
             $models[] = $this->auth->user();
         }
 
-        if($teamTraits && in_array(CanHaveRoles::class, $teamTraits) && $currentTeam) {
+        if ($teamTraits && in_array(CanHaveRoles::class, $teamTraits) && $currentTeam) {
             $models[] = $currentTeam;
         }
 

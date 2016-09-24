@@ -34,23 +34,23 @@ class AddDevelopers
      */
     public function handle($request, Closure $next)
     {
-        if(config('sparkroles.developer.enable')) {
-			$role = Role::where('slug', config('sparkroles.developer.slug'))->first();
-			if($role) {
-				$developers = [];
+        if (config('sparkroles.developer.enable')) {
+            $role = Role::where('slug', config('sparkroles.developer.slug'))->first();
+            if ($role) {
+                $developers = [];
 
-				foreach($role->users as $user) {
+                foreach ($role->users as $user) {
                     $developers[] = $user->email;
-				}
+                }
 
-                foreach($role->teams as $team) {
-					foreach($team->users as $user) {
+                foreach ($role->teams as $team) {
+                    foreach ($team->users as $user) {
                         $developers[] = $user->email;
-					}
-				}
-				Spark::developers(array_merge(Spark::$developers, $developers));
-			}
-		}
+                    }
+                }
+                Spark::developers(array_merge(Spark::$developers, $developers));
+            }
+        }
         return $next($request);
     }
 }

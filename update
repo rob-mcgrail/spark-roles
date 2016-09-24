@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo ""
+echo ""
+echo "Running Composer update..."
+composer update
+
+echo ""
+echo ""
+echo "Running NPM update..."
+npm update --no-bin-links
+
+echo ""
+echo ""
+echo "Sniffing PHP files..."
+phpcbf --standard=PSR2 --encoding=utf8 -p -n -s src/** install-stubs/**
+phpcs --report-file=phpcs.log --report-width=120 --standard=PSR2 -p -n -s src/** install-stubs/**

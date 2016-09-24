@@ -35,7 +35,7 @@ class HasRole
     {
         $team = $this->auth->user()->currentTeam;
 
-        if(!$team) {
+        if (!$team) {
             return false;
         }
 

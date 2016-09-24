@@ -35,10 +35,9 @@ class HasPermission
     public function handle($request, Closure $next, $permissions)
     {
         if ($this->auth->check()) {
-
             $team = $this->auth->user()->currentTeam;
 
-            if(!$team) {
+            if (!$team) {
                 return false;
             }
 
