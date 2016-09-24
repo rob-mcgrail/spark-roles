@@ -60,8 +60,8 @@ class SparkRolesServiceProvider extends ServiceProvider
         foreach ($this->getMigrations() as $key => $migration) {
             $exists = glob(database_path("/migrations/*_{$migration}.php"));
             $timestamp = $date->addSeconds($key)->format('Y_m_d_His');
-            $filename = ($exists && count($exists) === 1) ? $exists[0] : "migrations/{$timestamp}_{$migration}.php";
-            $publishes["{$stubs}/database/migrations/{$migration}.php"] = database_path($filename);
+            $filename = ($exists && count($exists) === 1) ? $exists[0] : database_path("migrations/{$timestamp}_{$migration}.php");
+            $publishes["{$stubs}/database/migrations/{$migration}.php"] = $filename;
         }
         $publishes[realpath("{$stubs}/config")] = config_path();
         $publishes[realpath("{$stubs}/model")] = app_path();
