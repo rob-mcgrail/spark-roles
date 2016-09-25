@@ -94,12 +94,13 @@ You will find user friendly documentation in the [ZiNETHQ SparkRoles Wiki](https
 ## Contributing
 Fork, edit, pull request. You know the drill.
 
-### Things to do
+### Hit list
 If you'd like to contribute consider helping with one of the following:
 
-- [ ] Add unit testing.
-- [ ] Add a Kiosk based frontend for defining roles and permissions, similar to [Watchtower](https://github.com/SmarchSoftware/watchtower) for [Shinobi](https://github.com/caffeinated/shinobi/).
-
+- [X] ~~Add Travis CI integration~~
+- [X] ~~Add PHPUnit support~~
+- [ ] Add meaningful unit tests
+- [ ] Add a Kiosk based frontend for defining roles and permissions, similar to [Watchtower](https://github.com/SmarchSoftware/watchtower) for [Shinobi](https://github.com/caffeinated/shinobi/)
 
 ## Awesome Shinobi
 
