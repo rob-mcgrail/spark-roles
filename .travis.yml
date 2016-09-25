@@ -9,8 +9,10 @@ php:
 
 sudo: false
 
-install:
-  travis_retry composer update --prefer-dist --no-interaction --prefer-stable --no-suggest
+before_script:
+  - composer self-update -q
+  - if [ -n "$GH_TOKEN" ]; then composer config github-oauth.github.com ${GH_TOKEN}; fi;
+  - travis_retry composer update --prefer-dist --no-interaction --prefer-stable --no-suggest
 
 matrix:
   allow_failures:
