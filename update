@@ -13,5 +13,5 @@ npm update --no-bin-links
 echo ""
 echo ""
 echo "Sniffing PHP files..."
-phpcbf --standard=PSR2 --encoding=utf8 -p -n -s src/** install-stubs/**
-phpcs --report-file=phpcs.log --report-width=120 --standard=PSR2 -p -n -s src/** install-stubs/**
+phpcbf --tab-width=4 --encoding=utf8 -p -w -s src/** install-stubs/** > phpcbf.log
+phpcs --report-file=phpcs.log --report-width=120 -p -n -s src/** install-stubs/**
