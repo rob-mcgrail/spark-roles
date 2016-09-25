@@ -9,14 +9,10 @@ php:
 
 sudo: false
 
-os:
-  - linux
-  - osx
-
 install:
-  - travis_retry composer update --prefer-dist --no-interaction --prefer-stable --no-suggest
+  travis_retry composer update --prefer-dist --no-interaction --prefer-stable --no-suggest
 
-  matrix:
+matrix:
   allow_failures:
     - php: 7.1
   fast_finish: true

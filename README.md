@@ -3,7 +3,7 @@
 [![Laravel 5.3](https://img.shields.io/badge/Laravel-5.3-orange.svg?style=flat-square)](http://laravel.com)
 [![Spark 2.0](https://img.shields.io/badge/Spark-2.0-orange.svg?style=flat-square)](https://spark.laravel.com)
 [![Source](http://img.shields.io/badge/source-zinethq/spark--roles-blue.svg?style=flat-square)](https://github.com/zinethq/spark-roles)
-[![Build](https://travis-ci.com/ZiNETHQ/spark.svg?token=gpWCZcg5JFXyzZNy5n19&branch=master)](https://travis-ci.com/ZiNETHQ/spark-roles)
+[![Build Status](https://travis-ci.org/ZiNETHQ/spark-roles.svg?branch=master)](https://travis-ci.org/ZiNETHQ/spark-roles)
 [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://tldrlegal.com/license/mit-license)
 
 SparkRoles, based on [Caffeinated Shinobi](https://github.com/caffeinated/shinobi/), brings a simple and light-weight role-based permissions system to Laravel Spark's Team and User models through the following ACL structure:
