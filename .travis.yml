@@ -9,6 +9,8 @@ env:
   global:
     - setup=basic
 
+install: true
+
 matrix:
   include:
     - php: 5.6
