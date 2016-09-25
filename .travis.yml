@@ -10,7 +10,7 @@ sudo: false
 before_script:
   - composer self-update -q
   - if [ -n "$GH_TOKEN" ]; then composer config github-oauth.github.com ${GH_TOKEN}; fi;
-  - ./update
+  - travis_retry composer update --prefer-dist --no-interaction --prefer-stable --no-suggest
 
 matrix:
   allow_failures:
