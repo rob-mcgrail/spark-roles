@@ -24,6 +24,12 @@
             "ZiNETHQ\\SparkRoles\\": "src/"
         }
     },
+        "repositories": [
+        {
+            "type": "composer",
+            "url": "https://spark-satis.laravel.com"
+        }
+    ],
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"
