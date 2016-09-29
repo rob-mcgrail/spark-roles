@@ -4,8 +4,9 @@ namespace ZiNETHQ\SparkRoles\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use ZiNETHQ\SparkRoles\Middleware\AbstractMiddleware;
 
-class HasRole
+class HasRole extends AbstractMiddleware
 {
     /**
      * @var Illuminate\Contracts\Auth\Guard
@@ -35,18 +36,10 @@ class HasRole
     {
         $team = $this->auth->user()->currentTeam;
 
-        if (!$team) {
-            return false;
+        if ($this->auth->user()->isRole($role) || ($team && $team->isRole($role))) {
+            return $next($request);
         }
 
-        if (! $team->isRole($role)) {
-            if ($request->ajax()) {
-                return response('Unauthorized.', 401);
-            }
-
-            return abort(401);
-        }
-
-        return $next($request);
+        return $this->forbidden($request);
     }
 }

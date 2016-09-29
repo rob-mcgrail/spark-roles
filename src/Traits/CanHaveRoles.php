@@ -1,4 +1,5 @@
 <?php
+
 namespace ZiNETHQ\SparkRoles\Traits;
 
 trait CanHaveRoles

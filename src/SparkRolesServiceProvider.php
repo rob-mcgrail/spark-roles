@@ -81,6 +81,7 @@ class SparkRolesServiceProvider extends ServiceProvider
             'create_permissions_table',
             'create_permission_role_table',
             'create_role_scopes_table',
+            'create_team_link_table',
         ];
     }
 

@@ -28,12 +28,22 @@ class HasCurrentTeam extends AbstractMiddleware
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @param  string|null  $guard
+     * @param  int $argument_name
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $argument_name)
     {
-        if ($auth->user()->currentTeam) {
+        $currentTeam = $auth->user()->currentTeam;
+
+        if (!$currentTeam) {
+            return $this->forbidden($request);
+        }
+
+        if (!array_key_exists($argument_name, $request->route()->parameters())) {
+            return $this->badrequest($request, "Argument name {$argument_name} not found in request parameters.");
+        }
+
+        if (!$currentTeam->children()->pluck('id')->contains($request->route()->getParameter($argument_name))) {
             return $this->forbidden($request);
         }
 

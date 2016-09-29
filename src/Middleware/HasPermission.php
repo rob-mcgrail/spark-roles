@@ -5,8 +5,9 @@ namespace ZiNETHQ\SparkRoles\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use ZiNETHQ\SparkRoles\Models\Role;
+use ZiNETHQ\SparkRoles\Middleware\AbstractMiddleware;
 
-class HasPermission
+class HasPermission extends AbstractMiddleware
 {
     /**
      * @var Illuminate\Contracts\Auth\Guard
@@ -34,35 +35,25 @@ class HasPermission
      */
     public function handle($request, Closure $next, $permissions)
     {
-        if ($this->auth->check()) {
-            $team = $this->auth->user()->currentTeam;
-
-            if (!$team) {
-                return false;
-            }
-
-            if (! $team->can($permissions)  !$team->can($permissions)) {
-                if ($request->ajax()) {
-                    return response('Unauthorized.', 403);
-                }
-
-                abort(403, 'Unauthorized action.');
-            }
-        } else {
+        if (!$this->auth->check()) {
             $guest = Role::whereSlug('guest')->first();
 
-            if ($guest) {
-                if (! $guest->can($permissions)) {
-                    if ($request->ajax()) {
-                        return response('Unauthorized.', 403);
-                    }
-
-                    abort(403, 'Unauthorized action.');
-                }
+            if (!$guest) {
+                return $this->forbidden($request);
             }
+
+            if (!$guest->can($permissions)) {
+                return $this->forbidden($request);
+            }
+
+            return $next($request);
         }
 
+        $team = $this->auth->user()->currentTeam;
+        if ($this->auth->user()->can($permissions) || ($team && $team->can($permissions))) {
+            return $next($request);
+        }
 
-        return $next($request);
+        return $this->forbidden($request);
     }
 }
