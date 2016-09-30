@@ -35,7 +35,7 @@ class HasPermission extends AbstractMiddleware
      */
     public function handle($request, Closure $next, $permissions)
     {
-        if (!$this->$auth) {
+        if (!$this->auth) {
             return $this->forbidden($request);
         }
 
