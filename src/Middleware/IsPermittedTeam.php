@@ -33,6 +33,10 @@ class HasCurrentTeam extends AbstractMiddleware
      */
     public function handle($request, Closure $next, $argument_name)
     {
+        if (!$this->$auth) {
+            return $this->forbidden($request);
+        }
+
         $currentTeam = $this->$auth->user()->currentTeam;
 
         if (!$currentTeam) {

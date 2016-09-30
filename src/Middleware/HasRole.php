@@ -34,6 +34,10 @@ class HasRole extends AbstractMiddleware
      */
     public function handle($request, Closure $next, $role)
     {
+        if (!$this->$auth) {
+            return $this->forbidden($request);
+        }
+
         $team = $this->auth->user()->currentTeam;
 
         if ($this->auth->user()->isRole($role) || ($team && $team->isRole($role))) {

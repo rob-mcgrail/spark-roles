@@ -35,6 +35,10 @@ class HasPermission extends AbstractMiddleware
      */
     public function handle($request, Closure $next, $permissions)
     {
+        if (!$this->$auth) {
+            return $this->forbidden($request);
+        }
+
         if (!$this->auth->check()) {
             $guest = Role::whereSlug('guest')->first();
 

@@ -3,27 +3,11 @@
 namespace ZiNETHQ\SparkRoles\Middleware;
 
 use Closure;
-use Illuminate\Contracts\Auth\Guard;
 use Laravel\Spark\Spark;
 use ZiNETHQ\SparkRoles\Models\Role;
 
 class AddDevelopers
 {
-    /**
-     * @var Illuminate\Contracts\Auth\Guard
-     */
-    protected $auth;
-
-    /**
-     * Create a new AddDevelopers instance.
-     *
-     * @param Guard $auth
-     */
-    public function __construct(Guard $auth)
-    {
-        $this->auth = $auth;
-    }
-
     /**
      * Run the request filter.
      *
