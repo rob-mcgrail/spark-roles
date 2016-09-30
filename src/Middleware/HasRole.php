@@ -40,10 +40,10 @@ class HasRole extends AbstractMiddleware
 
         $team = $this->auth->user()->currentTeam;
 
-        if ($this->auth->user()->isRole($role) || ($team && $team->isRole($role))) {
-            return $next($request);
+        if (!$this->auth->user()->isRole($role) && !($team && $team->isRole($role))) {
+            return $this->forbidden($request);
         }
 
-        return $this->forbidden($request);
+        return $next($request);
     }
 }
