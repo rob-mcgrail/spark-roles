@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 use ZiNETHQ\SparkRoles\Middleware\AbstractMiddleware;
 
-class HasCurrentTeam extends AbstractMiddleware
+class IsCurrentTeam extends AbstractMiddleware
 {
     /**
      * @var Illuminate\Contracts\Auth\Guard
