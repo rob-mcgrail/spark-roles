@@ -3,7 +3,7 @@
 namespace ZiNETHQ\SparkRoles\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Auth\Guard;
 use ZiNETHQ\SparkRoles\Middleware\AbstractMiddleware;
 
 class HasCurrentTeam extends AbstractMiddleware

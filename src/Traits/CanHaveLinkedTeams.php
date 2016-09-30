@@ -2,7 +2,7 @@
 
 namespace ZiNETHQ\SparkRoles\Traits;
 
-use Spark;
+use Laravel\Spark\Spark;
 
 trait CanHaveLinkedTeams
 {
