@@ -6,7 +6,7 @@ use Closure;
 use Laravel\Spark\Spark;
 use ZiNETHQ\SparkRoles\Models\Role;
 
-class AddDevelopers
+class AddDevelopers extends AbstractMiddleware
 {
     /**
      * Run the request filter.
