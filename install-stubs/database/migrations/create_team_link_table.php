@@ -14,9 +14,9 @@ class CreateTeamLinkTable extends Migration
     {
         Schema::create('team_link', function (Blueprint $table) {
             $table->integer('parent')->unsigned()->index();
-            $table->foreign('parent')->references('id')->on('teams')->onDelete('cascade');
+            $table->foreign('parent')->references('id')->on(Spark::team()->table())->onDelete('cascade');
             $table->integer('child')->unsigned()->index();
-            $table->foreign('child')->references('id')->on('teams')->onDelete('cascade');
+            $table->foreign('child')->references('id')->on(Spark::team()->table())->onDelete('cascade');
             $table->string('role', 20);
             $table->timestamps();
             $table->unique(['parent', 'child']);

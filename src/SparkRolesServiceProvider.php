@@ -39,7 +39,7 @@ class SparkRolesServiceProvider extends ServiceProvider
             'sparkroles'
         );
 
-        $this->app->singleton('sparkroles', function ($app) {
+        $this->app->singleton('spark.roles', function ($app) {
             $auth = $app->make('Illuminate\Contracts\Auth\Guard');
 
             return new SparkRoles($auth);

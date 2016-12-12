@@ -12,6 +12,6 @@ class SparkRoles extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'sparkroles';
+        return 'spark.roles';
     }
 }
