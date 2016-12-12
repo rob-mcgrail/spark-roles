@@ -146,6 +146,6 @@ class SparkRolesServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['sparkroles'];
+        return ['spark.roles'];
     }
 }
