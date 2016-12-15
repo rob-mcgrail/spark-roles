@@ -2,6 +2,7 @@
 namespace ZiNETHQ\SparkRoles\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use ZiNETHQ\SparkRoles\SparkRoles as Roles;
 
 class SparkRoles extends Facade
 {
@@ -12,6 +13,6 @@ class SparkRoles extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'spark.roles';
+        return Roles::class;
     }
 }
