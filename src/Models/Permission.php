@@ -20,6 +20,14 @@ class Permission extends Model
     protected $table = 'permissions';
 
     /**
+     * Static getter
+     **/
+    public static function get($slug)
+    {
+        return self::where('slug', $slug)->first();
+    }
+
+    /**
      * Permissions can belong to many roles.
      *
      * @return Model
