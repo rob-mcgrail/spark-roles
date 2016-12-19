@@ -22,6 +22,14 @@ class Role extends Model
     protected $table = 'roles';
 
     /**
+     * Static getter
+     **/
+    public static function get($slug)
+    {
+        return self::where('slug', $slug)->first();
+    }
+
+    /**
      * Get all users assigned to this role.
      *
      * @return Model
