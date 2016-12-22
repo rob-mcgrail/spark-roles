@@ -2,6 +2,8 @@
 
 namespace ZiNETHQ\SparkRoles\Traits;
 
+use App\Role;
+
 trait CanHaveRoles
 {
     /*
@@ -18,7 +20,7 @@ trait CanHaveRoles
      */
     public function roles()
     {
-        return $this->morphToMany('\ZiNETHQ\SparkRoles\Models\Role', 'role_scope')->withTimestamps();
+        return $this->morphToMany(Role::class, 'role_scope')->withTimestamps();
     }
 
     /**
