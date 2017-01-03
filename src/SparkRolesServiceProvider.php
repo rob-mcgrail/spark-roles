@@ -64,7 +64,7 @@ class SparkRolesServiceProvider extends ServiceProvider
             $publishes["{$stubs}/database/migrations/{$migration}.php"] = $filename;
         }
         $publishes[realpath("{$stubs}/config")] = config_path();
-        $publishes[realpath("{$stubs}/model")] = app_path();
+        $publishes[realpath("{$stubs}/models")] = app_path();
 
         $this->publishes($publishes);
     }

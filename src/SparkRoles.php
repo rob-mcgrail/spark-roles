@@ -25,6 +25,16 @@ class SparkRoles
         $this->auth = $auth;
     }
 
+    public static function roleModel()
+    {
+        return config('sparkroles.models.role');
+    }
+
+    public static function permissionModel()
+    {
+        return config('sparkroles.models.permission');
+    }
+
     /**
      * Checks if model has the given permissions.
      *

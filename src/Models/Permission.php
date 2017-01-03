@@ -2,8 +2,7 @@
 namespace ZiNETHQ\SparkRoles\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
-use App\Role;
+use ZiNETHQ\SparkRoles\SparkRoles;
 
 class Permission extends Model
 {
@@ -36,7 +35,7 @@ class Permission extends Model
      */
     public function roles()
     {
-        return $this->belongsToMany(Role::class)->withTimestamps();
+        return $this->belongsToMany(SparkRoles::roleModel())->withTimestamps();
     }
 
     /**
