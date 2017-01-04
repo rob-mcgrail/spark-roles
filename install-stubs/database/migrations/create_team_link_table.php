@@ -13,12 +13,14 @@ class CreateTeamLinkTable extends Migration
     public function up()
     {
         Schema::create('team_link', function (Blueprint $table) {
-            $table->integer('parent')->unsigned()->index();
-            $table->foreign('parent')->references('id')->on(Spark::team()->table())->onDelete('cascade');
-            $table->integer('child')->unsigned()->index();
-            $table->foreign('child')->references('id')->on(Spark::team()->table())->onDelete('cascade');
+            $table->increments('id');
+            $table->unsignedInteger('parent');
+            $table->unsignedInteger('child');
             $table->string('role', 20);
             $table->timestamps();
+
+            $table->foreign('parent')->references('id')->on(Spark::team()->table())->onDelete('cascade');
+            $table->foreign('child')->references('id')->on(Spark::team()->table())->onDelete('cascade');
             $table->unique(['parent', 'child']);
         });
     }
