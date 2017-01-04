@@ -3,6 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+use Laravel\Spark\Spark;
+
 class CreateTeamLinkTable extends Migration
 {
     /**
@@ -18,8 +20,8 @@ class CreateTeamLinkTable extends Migration
             $table->string('role', 20);
             $table->timestamps();
 
-            $table->foreign('parent')->references('id')->on(Spark::team()->table())->onDelete('cascade');
-            $table->foreign('child')->references('id')->on(Spark::team()->table())->onDelete('cascade');
+            $table->foreign('parent')->references('id')->on('teams')->onDelete('cascade');
+            $table->foreign('child')->references('id')->on('teams')->onDelete('cascade');
             $table->unique(['parent', 'child']);
         });
     }
