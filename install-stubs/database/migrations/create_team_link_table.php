@@ -13,7 +13,6 @@ class CreateTeamLinkTable extends Migration
     public function up()
     {
         Schema::create('team_link', function (Blueprint $table) {
-            $table->increments('id');
             $table->unsignedInteger('parent');
             $table->unsignedInteger('child');
             $table->string('role', 20);
